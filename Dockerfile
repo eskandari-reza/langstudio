@@ -3,7 +3,7 @@
 # Both targets share the same build layers, so they take little extra disk space.
 
 FROM node:22-bookworm-slim AS builder
-LABEL org.opencontainers.image.source="https://github.com/eskandari-reza/rlhf"
+LABEL org.opencontainers.image.source="https://github.com/eskandari-reza/langstudio"
 ENV NEXT_TELEMETRY_DISABLED=1 \
     COREPACK_ENABLE_DOWNLOAD_PROMPT=0 \
     CI=true

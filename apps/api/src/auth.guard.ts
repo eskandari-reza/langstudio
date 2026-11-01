@@ -5,7 +5,7 @@ import {
   UnauthorizedException,
 } from "@nestjs/common";
 import { decode } from "@auth/core/jwt";
-import { db, schema } from "@rlhf/db";
+import { db, schema } from "@langstudio/db";
 import { eq } from "drizzle-orm";
 
 const DEV_COOKIE = "authjs.session-token";

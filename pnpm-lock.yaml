@@ -32,10 +32,10 @@ importers:
       '@nestjs/platform-express':
         specifier: 10.4.15
         version: 10.4.15(@nestjs/common@10.4.15(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/core@10.4.15)
-      '@rlhf/db':
+      '@langstudio/db':
         specifier: workspace:*
         version: link:../../packages/db
-      '@rlhf/shared':
+      '@langstudio/shared':
         specifier: workspace:*
         version: link:../../packages/shared
       cookie-parser:
@@ -84,13 +84,13 @@ importers:
       '@fontsource/vazirmatn':
         specifier: ^5.3.0
         version: 5.3.0
-      '@rlhf/db':
+      '@langstudio/db':
         specifier: workspace:*
         version: link:../../packages/db
-      '@rlhf/shared':
+      '@langstudio/shared':
         specifier: workspace:*
         version: link:../../packages/shared
-      '@rlhf/ui':
+      '@langstudio/ui':
         specifier: workspace:*
         version: link:../../packages/ui
       '@tailwindcss/postcss':

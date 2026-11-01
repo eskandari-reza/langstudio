@@ -1,5 +1,5 @@
 {
-  "name": "rlhf",
+  "name": "langstudio",
   "private": true,
   "packageManager": "pnpm@10.11.0",
   "workspaces": [
@@ -10,8 +10,8 @@
     "dev": "turbo run dev",
     "build": "turbo run build",
     "lint": "turbo run lint",
-    "db:generate": "turbo run db:generate --filter=@rlhf/db",
-    "db:push": "turbo run db:push --filter=@rlhf/db"
+    "db:generate": "turbo run db:generate --filter=@langstudio/db",
+    "db:push": "turbo run db:push --filter=@langstudio/db"
   },
   "devDependencies": {
     "turbo": "^2.5.0",

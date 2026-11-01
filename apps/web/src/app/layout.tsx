@@ -10,8 +10,8 @@ import SiteHeader from "@/components/site-header";
 import SiteFooter from "@/components/site-footer";
 
 export const metadata: Metadata = {
-  title: { default: "RLHF Lab", template: "%s · RLHF Lab" },
-  description: "آموزش و تمرین ارزیابی پاسخ‌های مدل‌های زبانی (RLHF) با سناریوهای دوزبانه",
+  title: { default: "langstudio Lab", template: "%s · langstudio Lab" },
+  description: "آموزش و تمرین ارزیابی پاسخ‌های مدل‌های زبانی (langstudio) با سناریوهای دوزبانه",
 };
 
 export const viewport: Viewport = {

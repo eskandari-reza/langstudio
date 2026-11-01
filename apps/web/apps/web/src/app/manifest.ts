@@ -2,8 +2,8 @@ import type { MetadataRoute } from "next";
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: "RLHF Lab",
-    short_name: "RLHF Lab",
+    name: "langstudio Lab",
+    short_name: "langstudio Lab",
     description: "آموزش و تمرین ارزیابی پاسخ‌های مدل‌های زبانی",
     start_url: "/",
     display: "standalone",

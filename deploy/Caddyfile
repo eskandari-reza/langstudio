@@ -1,9 +1,9 @@
 # HTTPS certificates are requested and renewed automatically.
-www.rlhf.ir {
-	redir https://rlhf.ir{uri} permanent
+www.langstudio.ir {
+	redir https://langstudio.ir{uri} permanent
 }
 
-rlhf.ir {
+langstudio.ir {
 	encode zstd gzip
 
 	header {

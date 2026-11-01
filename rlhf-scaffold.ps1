@@ -1,13 +1,13 @@
 # =============================================================
-# rlhf monorepo scaffold script
-# Usage:  .\rlhf-scaffold.ps1
-# Creates the full rlhf monorepo (Turborepo + pnpm workspaces)
+# langstudio monorepo scaffold script
+# Usage:  .\langstudio-scaffold.ps1
+# Creates the full langstudio monorepo (Turborepo + pnpm workspaces)
 # =============================================================
 
 $ErrorActionPreference = "Stop"
 $root = Get-Location
 
-Write-Host "==> Scaffolding 'rlhf' monorepo at $root" -ForegroundColor Cyan
+Write-Host "==> Scaffolding 'langstudio' monorepo at $root" -ForegroundColor Cyan
 
 # -------------------------------------------------------------
 # 1) Create all directories first
@@ -43,7 +43,7 @@ Write-Host "==> [2/6] Writing root files..." -ForegroundColor Yellow
 
 Write-ProjectFile "package.json" @'
 {
-  "name": "rlhf",
+  "name": "langstudio",
   "private": true,
   "packageManager": "pnpm@10.11.0",
   "workspaces": [
@@ -54,8 +54,8 @@ Write-ProjectFile "package.json" @'
     "dev": "turbo run dev",
     "build": "turbo run build",
     "lint": "turbo run lint",
-    "db:generate": "turbo run db:generate --filter=@rlhf/db",
-    "db:push": "turbo run db:push --filter=@rlhf/db"
+    "db:generate": "turbo run db:generate --filter=@langstudio/db",
+    "db:push": "turbo run db:push --filter=@langstudio/db"
   },
   "devDependencies": {
     "turbo": "^2.5.0",
@@ -109,7 +109,7 @@ coverage/
 '@
 
 Write-ProjectFile ".env" @'
-DATABASE_URL=postgresql://rlhf:rlhf_pass@localhost:5432/rlhf_lab
+DATABASE_URL=postgresql://langstudio:langstudio_pass@localhost:5432/langstudio_lab
 AUTH_SECRET=your-secret-here)
 '@
 
@@ -137,20 +137,20 @@ Write-ProjectFile "docker-compose.yml" @'
 services:
   postgres:
     image: postgres:16-alpine
-    container_name: rlhf-postgres
+    container_name: langstudio-postgres
     restart: unless-stopped
     ports:
       - "5432:5432"
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: rlhf
+      POSTGRES_DB: langstudio
     volumes:
       - pgdata:/var/lib/postgresql/data
 
   redis:
     image: redis:7-alpine
-    container_name: rlhf-redis
+    container_name: langstudio-redis
     restart: unless-stopped
     ports:
       - "6379:6379"
@@ -183,9 +183,9 @@ Write-ProjectFile "apps/web/package.json" @'
     "react": "19.1.0",
     "react-dom": "19.1.0",
     "next-auth": "^5.0.0-beta.25",
-    "@rlhf/db": "workspace:*",
-    "@rlhf/shared": "workspace:*",
-    "@rlhf/ui": "workspace:*"
+    "@langstudio/db": "workspace:*",
+    "@langstudio/shared": "workspace:*",
+    "@langstudio/ui": "workspace:*"
   },
   "devDependencies": {
     "@types/node": "^22.15.0",
@@ -222,7 +222,7 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
-  transpilePackages: ["@rlhf/db", "@rlhf/shared", "@rlhf/ui"],
+  transpilePackages: ["@langstudio/db", "@langstudio/shared", "@langstudio/ui"],
 };
 
 export default nextConfig;
@@ -259,8 +259,8 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "RLHF",
-  description: "RLHF monorepo web application",
+  title: "langstudio",
+  description: "langstudio monorepo web application",
 };
 
 export default function RootLayout({
@@ -280,7 +280,7 @@ Write-ProjectFile "apps/web/src/app/page.tsx" @'
 export default function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-center gap-4">
-      <h1 className="text-4xl font-bold">RLHF</h1>
+      <h1 className="text-4xl font-bold">langstudio</h1>
       <p className="text-neutral-500">Next.js app is running.</p>
     </main>
   );
@@ -330,7 +330,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
         return {
           id: "1",
           email: credentials.email as string,
-          name: "RLHF User",
+          name: "langstudio User",
         };
       },
     }),
@@ -358,8 +358,8 @@ Write-ProjectFile "apps/api/package.json" @'
     "@nestjs/core": "10.4.15",
     "@nestjs/platform-express": "10.4.15",
     "@nestjs/config": "^3.3.0",
-    "@rlhf/db": "workspace:*",
-    "@rlhf/shared": "workspace:*",
+    "@langstudio/db": "workspace:*",
+    "@langstudio/shared": "workspace:*",
     "reflect-metadata": "^0.2.2",
     "rxjs": "^7.8.1"
   },
@@ -453,7 +453,7 @@ import { Injectable } from "@nestjs/common";
 @Injectable()
 export class AppService {
   getHello(): string {
-    return "RLHF API is running!";
+    return "langstudio API is running!";
   }
 }
 '@
@@ -466,7 +466,7 @@ Write-Host "==> [5/6] Writing packages (db, shared, ui)..." -ForegroundColor Yel
 # --- packages/db ---
 Write-ProjectFile "packages/db/package.json" @'
 {
-  "name": "@rlhf/db",
+  "name": "@langstudio/db",
   "version": "0.0.1",
   "private": true,
   "main": "./src/index.ts",
@@ -570,7 +570,7 @@ export const sessions = pgTable("sessions", {
 # --- packages/shared ---
 Write-ProjectFile "packages/shared/package.json" @'
 {
-  "name": "@rlhf/shared",
+  "name": "@langstudio/shared",
   "version": "0.0.1",
   "private": true,
   "main": "./src/index.ts",
@@ -625,7 +625,7 @@ export interface ApiResponse<T = unknown> {
 # --- packages/ui ---
 Write-ProjectFile "packages/ui/package.json" @'
 {
-  "name": "@rlhf/ui",
+  "name": "@langstudio/ui",
   "version": "0.0.1",
   "private": true,
   "main": "./src/index.ts",

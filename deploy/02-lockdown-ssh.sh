@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# RLHF Lab - step 2: disable root and password logins over SSH.
+# langstudio Lab - step 2: disable root and password logins over SSH.
 # Run as root, ONLY after you logged in as the deploy user with your key from another window.
 set -euo pipefail
 
@@ -17,7 +17,7 @@ if [[ "$ANSWER" != "yes" ]]; then echo "Cancelled. Nothing changed."; exit 1; fi
 
 # The file starts with 00- on purpose: sshd keeps the FIRST value it reads, so this must win
 # over files such as 50-cloud-init.conf.
-cat > /etc/ssh/sshd_config.d/00-rlhf-hardening.conf <<EOF2
+cat > /etc/ssh/sshd_config.d/00-langstudio-hardening.conf <<EOF2
 PermitRootLogin no
 PasswordAuthentication no
 KbdInteractiveAuthentication no

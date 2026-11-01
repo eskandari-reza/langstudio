@@ -1,7 +1,7 @@
-$src   = "D:\02_Projects\rlhf"
+$src   = "D:\02_Projects\langstudio"
 $stamp = Get-Date -Format 'yyyy-MM-dd_HH-mm'
-$tmp   = Join-Path $env:TEMP "rlhf-small-$stamp"
-$dst   = "D:\02_Projects\rlhf-small-$stamp.zip"
+$tmp   = Join-Path $env:TEMP "langstudio-small-$stamp"
+$dst   = "D:\02_Projects\langstudio-small-$stamp.zip"
 
 # کپی فقط فایل‌های اصلی (بدون پوشه‌ها و فایل‌های قابل بازسازی)
 robocopy $src $tmp /E `

@@ -9,7 +9,7 @@ import {
   Req,
   UseGuards
 } from "@nestjs/common";
-import { db, schema } from "@rlhf/db";
+import { db, schema } from "@langstudio/db";
 import { and, eq, notExists, sql } from "drizzle-orm";
 import { AuthGuard } from "./auth.guard";
 import { AdminGuard } from "./admin.guard";
@@ -18,7 +18,7 @@ type ImportItem = { prompt: string; language?: string; responses: { text: string
 
 @Controller()
 @UseGuards(AuthGuard)
-export class RlhfController {
+export class langstudioController {
   // ادمین: ورود prompt و پاسخ‌ها، و ساخت مقایسه‌ی جفتی
   @Post("admin/import")
   @UseGuards(AdminGuard)

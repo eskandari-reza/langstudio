@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { auth } from "@/auth";
-import { db } from "@rlhf/db";
+import { db } from "@langstudio/db";
 import { sql } from "drizzle-orm";
 import { Button } from "@/components/ui/button";
 import { HeroArt } from "@/components/hero-art";
@@ -68,7 +68,7 @@ export default async function Home() {
       <section className="grid items-center gap-8 md:grid-cols-2">
         <div className="space-y-5">
           <span className="inline-flex items-center gap-1.5 rounded-full bg-secondary px-3 py-1 text-sm text-secondary-foreground">
-            <Icon name="sparkle" size={18} /> آموزش و تمرین RLHF
+            <Icon name="sparkle" size={18} /> آموزش و تمرین langstudio
           </span>
           <h1 className="text-4xl leading-tight md:text-6xl">
             هوش مصنوعی بهتر،

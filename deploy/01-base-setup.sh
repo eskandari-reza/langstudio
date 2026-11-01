@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# RLHF Lab - step 1: base setup of a FRESH Ubuntu 24.04 server.
+# langstudio Lab - step 1: base setup of a FRESH Ubuntu 24.04 server.
 # Run once, as root:   sudo bash 01-base-setup.sh
 # It does NOT disable password login yet; that is step 2, after you tested the new user.
 set -euo pipefail
@@ -90,7 +90,7 @@ APT::Periodic::Unattended-Upgrade "1";
 EOF3
 
 echo "== 7/7  Folders"
-install -d -m 755 -o "$DEPLOY_USER" -g "$DEPLOY_USER" /opt/rlhf /opt/rlhf/backups
+install -d -m 755 -o "$DEPLOY_USER" -g "$DEPLOY_USER" /opt/langstudio /opt/langstudio/backups
 
 echo
 echo "Base setup finished."

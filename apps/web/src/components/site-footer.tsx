@@ -7,7 +7,7 @@ export default function SiteFooter() {
         <div className="space-y-2">
           <Logo size={28} />
           <p className="max-w-xl text-sm text-muted-foreground">
-            RLHF Lab یک سایت آموزشی مستقل است و وابسته به هیچ‌یک از پلتفرم‌های نام‌برده شده و تأییدشده توسط آن‌ها نیست.
+            langstudio Lab یک سایت آموزشی مستقل است و وابسته به هیچ‌یک از پلتفرم‌های نام‌برده شده و تأییدشده توسط آن‌ها نیست.
             سناریوها برای تمرین ساخته شده‌اند و سؤال واقعی هیچ آزمونی نیستند.
           </p>
         </div>
@@ -19,7 +19,7 @@ export default function SiteFooter() {
           ))}
         </div>
       </div>
-      <p dir="ltr" className="mt-4 text-center text-xs text-muted-foreground">© {new Date().getFullYear()} RLHF Lab</p>
+      <p dir="ltr" className="mt-4 text-center text-xs text-muted-foreground">© {new Date().getFullYear()} langstudio Lab</p>
     </footer>
   );
 }

@@ -1,20 +1,20 @@
-# RLHF Lab production stack. Copied to /opt/rlhf/docker-compose.yml by the deploy workflow.
-# Secrets are read from /opt/rlhf/.env (never committed).
-name: rlhf
+# langstudio Lab production stack. Copied to /opt/langstudio/docker-compose.yml by the deploy workflow.
+# Secrets are read from /opt/langstudio/.env (never committed).
+name: langstudio
 
 services:
   postgres:
     image: postgres:16-alpine
-    container_name: rlhf-postgres
+    container_name: langstudio-postgres
     restart: unless-stopped
     environment:
-      POSTGRES_USER: rlhf
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?set POSTGRES_PASSWORD in /opt/rlhf/.env}
-      POSTGRES_DB: rlhf
+      POSTGRES_USER: langstudio
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?set POSTGRES_PASSWORD in /opt/langstudio/.env}
+      POSTGRES_DB: langstudio
     volumes:
       - pgdata:/var/lib/postgresql/data
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U rlhf -d rlhf"]
+      test: ["CMD-SHELL", "pg_isready -U langstudio -d langstudio"]
       interval: 10s
       timeout: 5s
       retries: 10
@@ -22,25 +22,25 @@ services:
 
   # one-shot: applies database migrations, then exits
   migrate:
-    image: ghcr.io/eskandari-reza/rlhf-api:${IMAGE_TAG:-latest}
+    image: ghcr.io/eskandari-reza/langstudio-api:${IMAGE_TAG:-latest}
     command: ["node", "packages/db/dist/migrate.js"]
     restart: "no"
     environment:
-      DATABASE_URL: postgres://rlhf:${POSTGRES_PASSWORD}@postgres:5432/rlhf
+      DATABASE_URL: postgres://langstudio:${POSTGRES_PASSWORD}@postgres:5432/langstudio
     depends_on:
       postgres:
         condition: service_healthy
     networks: [internal]
 
   api:
-    image: ghcr.io/eskandari-reza/rlhf-api:${IMAGE_TAG:-latest}
-    container_name: rlhf-api
+    image: ghcr.io/eskandari-reza/langstudio-api:${IMAGE_TAG:-latest}
+    container_name: langstudio-api
     restart: unless-stopped
     environment:
       NODE_ENV: production
       PORT: "3001"
-      DATABASE_URL: postgres://rlhf:${POSTGRES_PASSWORD}@postgres:5432/rlhf
-      AUTH_SECRET: ${AUTH_SECRET:?set AUTH_SECRET in /opt/rlhf/.env}
+      DATABASE_URL: postgres://langstudio:${POSTGRES_PASSWORD}@postgres:5432/langstudio
+      AUTH_SECRET: ${AUTH_SECRET:?set AUTH_SECRET in /opt/langstudio/.env}
       AUTH_MODE: ${AUTH_MODE:-dev}
     depends_on:
       migrate:
@@ -54,15 +54,15 @@ services:
     networks: [internal]
 
   web:
-    image: ghcr.io/eskandari-reza/rlhf-web:${IMAGE_TAG:-latest}
-    container_name: rlhf-web
+    image: ghcr.io/eskandari-reza/langstudio-web:${IMAGE_TAG:-latest}
+    container_name: langstudio-web
     restart: unless-stopped
     environment:
       NODE_ENV: production
       PORT: "3000"
-      DATABASE_URL: postgres://rlhf:${POSTGRES_PASSWORD}@postgres:5432/rlhf
+      DATABASE_URL: postgres://langstudio:${POSTGRES_PASSWORD}@postgres:5432/langstudio
       AUTH_SECRET: ${AUTH_SECRET}
-      AUTH_URL: ${AUTH_URL:-https://rlhf.ir}
+      AUTH_URL: ${AUTH_URL:-https://langstudio.ir}
       AUTH_TRUST_HOST: "true"
       AUTH_MODE: ${AUTH_MODE:-dev}
       GOOGLE_CLIENT_ID: ${GOOGLE_CLIENT_ID:-}
@@ -74,7 +74,7 @@ services:
 
   caddy:
     image: caddy:2
-    container_name: rlhf-caddy
+    container_name: langstudio-caddy
     restart: unless-stopped
     ports:
       - "80:80"

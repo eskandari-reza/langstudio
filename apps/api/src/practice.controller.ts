@@ -11,7 +11,7 @@ import {
   Req,
   UseGuards,
 } from "@nestjs/common";
-import { db, schema } from "@rlhf/db";
+import { db, schema } from "@langstudio/db";
 import { and, eq, sql } from "drizzle-orm";
 import { AuthGuard } from "./auth.guard";
 import {

@@ -22,7 +22,7 @@ export default async function SiteHeader() {
   return (
     <header dir="rtl" className="sticky top-0 z-40 px-3 pt-3">
       <div className="sticker-card mx-auto flex max-w-6xl items-center justify-between gap-3 rounded-full bg-card/85 px-4 py-2 backdrop-blur">
-        <Link href="/" aria-label="صفحه‌ی اصلی RLHF Lab">
+        <Link href="/" aria-label="صفحه‌ی اصلی langstudio Lab">
           <Logo size={32} />
         </Link>
 

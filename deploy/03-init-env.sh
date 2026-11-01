@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
-# Creates /opt/rlhf/.env with fresh random secrets. Run once on the server as the deploy user.
+# Creates /opt/langstudio/.env with fresh random secrets. Run once on the server as the deploy user.
 set -euo pipefail
-ENV_FILE=/opt/rlhf/.env
+ENV_FILE=/opt/langstudio/.env
 if [[ -e "$ENV_FILE" ]]; then
   echo "$ENV_FILE already exists; leaving it untouched."
   exit 0
@@ -10,7 +10,7 @@ umask 077
 cat > "$ENV_FILE" <<EOF2
 POSTGRES_PASSWORD=$(openssl rand -hex 24)
 AUTH_SECRET=$(openssl rand -base64 32)
-AUTH_URL=https://rlhf.ir
+AUTH_URL=https://langstudio.ir
 AUTH_MODE=dev
 GOOGLE_CLIENT_ID=
 GOOGLE_CLIENT_SECRET=

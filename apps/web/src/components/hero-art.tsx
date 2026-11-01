@@ -5,7 +5,7 @@ export function HeroArt({ className }: { className?: string }) {
     <svg
       viewBox="0 0 480 380"
       role="img"
-      aria-label="قلعه‌ی رؤیایی RLHF Lab"
+      aria-label="قلعه‌ی رؤیایی langstudio Lab"
       className={className}
       dangerouslySetInnerHTML={{ __html: HERO_ART }}
     />

@@ -3,12 +3,12 @@
 
 export const LOGO_MARK = `
 <defs>
-  <linearGradient id="rlhf-lg" x1="6" y1="6" x2="58" y2="58" gradientUnits="userSpaceOnUse">
+  <linearGradient id="langstudio-lg" x1="6" y1="6" x2="58" y2="58" gradientUnits="userSpaceOnUse">
     <stop offset="0" stop-color="#ff7ab8"/>
     <stop offset="1" stop-color="#9b8cff"/>
   </linearGradient>
 </defs>
-<path d="M28 6c2.2 15 7.5 21 23 24-15.5 3-20.8 9-23 24-2.2-15-7.5-21-23-24 15.5-3 20.8-9 23-24Z" fill="url(#rlhf-lg)" stroke="url(#rlhf-lg)" stroke-width="3" stroke-linejoin="round"/>
+<path d="M28 6c2.2 15 7.5 21 23 24-15.5 3-20.8 9-23 24-2.2-15-7.5-21-23-24 15.5-3 20.8-9 23-24Z" fill="url(#langstudio-lg)" stroke="url(#langstudio-lg)" stroke-width="3" stroke-linejoin="round"/>
 <path d="M50 8c.8 5 2.6 7 8 8-5.4 1-7.2 3-8 8-.8-5-2.6-7-8-8 5.4-1 7.2-3 8-8Z" fill="#ffb86b" stroke="#ffb86b" stroke-width="1.5" stroke-linejoin="round"/>
 <circle cx="49" cy="50" r="4" fill="#ffb86b"/>
 <circle cx="12" cy="54" r="2.2" fill="#ff7ab8"/>

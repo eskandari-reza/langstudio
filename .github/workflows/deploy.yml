@@ -32,8 +32,8 @@ jobs:
           target: ${{ matrix.target }}
           push: true
           tags: |
-            ghcr.io/eskandari-reza/rlhf-${{ matrix.target }}:latest
-            ghcr.io/eskandari-reza/rlhf-${{ matrix.target }}:${{ github.sha }}
+            ghcr.io/eskandari-reza/langstudio-${{ matrix.target }}:latest
+            ghcr.io/eskandari-reza/langstudio-${{ matrix.target }}:${{ github.sha }}
           build-args: |
             NEXT_PUBLIC_API_URL=/backend
           cache-from: type=gha,scope=${{ matrix.target }}
@@ -57,10 +57,10 @@ jobs:
       #     HOST: ${{ secrets.DEPLOY_HOST }}
       #     DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
       #   run: |
-      #     scp deploy/docker-compose.prod.yml "$DEPLOY_USER@$HOST:/opt/rlhf/docker-compose.yml"
-      #     scp deploy/Caddyfile "$DEPLOY_USER@$HOST:/opt/rlhf/Caddyfile"
-      #     scp deploy/backup.sh "$DEPLOY_USER@$HOST:/opt/rlhf/backup.sh"
-      #     ssh "$DEPLOY_USER@$HOST" 'cd /opt/rlhf && chmod +x backup.sh && docker compose pull && docker compose up -d --remove-orphans && docker image prune -f'
+      #     scp deploy/docker-compose.prod.yml "$DEPLOY_USER@$HOST:/opt/langstudio/docker-compose.yml"
+      #     scp deploy/Caddyfile "$DEPLOY_USER@$HOST:/opt/langstudio/Caddyfile"
+      #     scp deploy/backup.sh "$DEPLOY_USER@$HOST:/opt/langstudio/backup.sh"
+      #     ssh "$DEPLOY_USER@$HOST" 'cd /opt/langstudio && chmod +x backup.sh && docker compose pull && docker compose up -d --remove-orphans && docker image prune -f'
       - name: Copy stack files and deploy
         timeout-minutes: 10
         env:
@@ -69,12 +69,12 @@ jobs:
           GHCR_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GHCR_USER: ${{ github.actor }}
         run: |
-          scp deploy/docker-compose.prod.yml "$DEPLOY_USER@$HOST:/opt/rlhf/docker-compose.yml"
-          scp deploy/Caddyfile "$DEPLOY_USER@$HOST:/opt/rlhf/Caddyfile"
-          scp deploy/backup.sh "$DEPLOY_USER@$HOST:/opt/rlhf/backup.sh"
+          scp deploy/docker-compose.prod.yml "$DEPLOY_USER@$HOST:/opt/langstudio/docker-compose.yml"
+          scp deploy/Caddyfile "$DEPLOY_USER@$HOST:/opt/langstudio/Caddyfile"
+          scp deploy/backup.sh "$DEPLOY_USER@$HOST:/opt/langstudio/backup.sh"
           
           # لاگین به GHCR با استفاده از توکن گیت‌هاب
           ssh "$DEPLOY_USER@$HOST" "echo '$GHCR_TOKEN' | docker login ghcr.io -u '$GHCR_USER' --password-stdin"
           
           # اجرای دستورات با محدودیت زمانی
-          ssh "$DEPLOY_USER@$HOST" 'cd /opt/rlhf && chmod +x backup.sh && timeout 300 docker compose pull && timeout 300 docker compose up -d --remove-orphans && docker image prune -f'
+          ssh "$DEPLOY_USER@$HOST" 'cd /opt/langstudio && chmod +x backup.sh && timeout 300 docker compose pull && timeout 300 docker compose up -d --remove-orphans && docker image prune -f'

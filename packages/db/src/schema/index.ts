@@ -1,4 +1,4 @@
 export * from "./auth";
-export * from "./rlhf";
+export * from "./langstudio";
 export * from "./scenarios";
 export * from "./attempts";

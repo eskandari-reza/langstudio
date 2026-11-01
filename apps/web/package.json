@@ -1,5 +1,5 @@
 {
-  "name": "@rlhf/web",
+  "name": "@langstudio/web",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -13,9 +13,9 @@
     "@fontsource/lalezar": "^5.3.0",
     "@fontsource/nunito": "^5.3.0",
     "@fontsource/vazirmatn": "^5.3.0",
-    "@rlhf/db": "workspace:*",
-    "@rlhf/shared": "workspace:*",
-    "@rlhf/ui": "workspace:*",
+    "@langstudio/db": "workspace:*",
+    "@langstudio/shared": "workspace:*",
+    "@langstudio/ui": "workspace:*",
     "@tailwindcss/postcss": "^4.3.3",
     "bcryptjs": "^3.0.3",
     "class-variance-authority": "^0.7.1",
