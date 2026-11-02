@@ -72,22 +72,22 @@ services:
         condition: service_healthy
     networks: [internal]
 
-  caddy:
-    image: caddy:2
-    container_name: langstudio-caddy
-    restart: unless-stopped
-    ports:
-      - "80:80"
-      - "443:443"
-      - "443:443/udp"
-    volumes:
-      - ./Caddyfile:/etc/caddy/Caddyfile:ro
-      - caddy_data:/data
-      - caddy_config:/config
-    depends_on:
-      - web
-      - api
-    networks: [internal]
+  # caddy:
+  #   image: caddy:2
+  #   container_name: langstudio-caddy
+  #   restart: unless-stopped
+  #   ports:
+  #     - "80:80"
+  #     - "443:443"
+  #     - "443:443/udp"
+  #   volumes:
+  #     - ./Caddyfile:/etc/caddy/Caddyfile:ro
+  #     - caddy_data:/data
+  #     - caddy_config:/config
+  #   depends_on:
+  #     - web
+  #     - api
+  #   networks: [internal]
 
 networks:
   internal:
