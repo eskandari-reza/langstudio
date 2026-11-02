@@ -91,6 +91,8 @@ services:
 
 networks:
   internal:
+    name: rlhf_internal
+    external: true
 
 volumes:
   pgdata:
